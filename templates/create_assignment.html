@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Assignment {% endblock %}
+
+{% block content %}
+    <h2>Create a New Assignment</h2>
+    <form method="POST" action="{{ url_for('create_assignment') }}">
+        {{ form.hidden_tag() }}  <!-- This is to include CSRF token -->
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            {{ form.title(class="form-control") }}  <!-- Render title field -->
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            {{ form.description(class="form-control") }}  <!-- Render description field -->
+        </div>
+        
+        <div class="form-group">
+            <label for="due_date">Due Date</label>
+            {{ form.due_date(class="form-control", type="datetime-local") }}  <!-- Correct date-time input -->
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Create Assignment</button>
+    </form>
+{% endblock %}

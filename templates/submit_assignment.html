@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Submit Assignment {% endblock %}
+
+{% block content %}
+    <h2>{{ assignment.title }}</h2>
+    <p>{{ assignment.description }}</p>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="submission" class="form-label">Your Submission</label>
+            <textarea class="form-control" id="submission" name="submission" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

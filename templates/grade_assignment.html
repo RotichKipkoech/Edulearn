@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Grade Assignment - EduLearner{% endblock %}
+
+{% block content %}
+<h2>Grade Assignment</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        <label for="grade" class="form-label">Grade</label>
+        {{ form.grade(class="form-control", placeholder="Enter grade") }}
+    </div>
+    <button type="submit" class="btn btn-success">{{ form.submit.label }}</button>
+</form>
+{% endblock %}

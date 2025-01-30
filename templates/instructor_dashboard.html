@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Instructor Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Instructor Dashboard</h2>
+    <p>Welcome, Instructor! Here you can manage lessons and assignments.</p>
+
+    <h4>Lessons</h4>
+    <ul class="list-group">
+        {% for lesson in lessons %}
+            <li class="list-group-item">{{ lesson.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Assignments</h4>
+    <ul class="list-group">
+        {% for assignment in assignments %}
+            <li class="list-group-item">
+                <strong>{{ assignment.title }}</strong><br>
+                Due Date: {{ assignment.due_date }}<br>
+                Status: {{ assignment.status }}<br>
+                Grade: {% if assignment.grade %}{{ assignment.grade }}{% else %}Not Graded{% endif %}<br>
+
+                {% if assignment.status != 'Graded' %}
+                    <!-- Form to grade the assignment and change status -->
+                    <form action="{{ url_for('instructor_dashboard') }}" method="POST">
+                        <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
+                        
+                        <!-- Grade Input -->
+                        <div class="form-group">
+                            <label for="grade_{{ assignment.id }}">Grade:</label>
+                            <input type="text" name="grade" id="grade_{{ assignment.id }}" class="form-control" placeholder="Enter grade" required>
+                        </div>
+
+                        <!-- Status Dropdown -->
+                        <div class="form-group">
+                            <label for="status_{{ assignment.id }}">Status:</label>
+                            <select name="status" id="status_{{ assignment.id }}" class="form-control" required>
+                                <option value="In Progress" {% if assignment.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                <option value="Graded" {% if assignment.status == 'Graded' %}selected{% endif %}>Graded</option>
+                                <option value="Submitted" {% if assignment.status == 'Submitted' %}selected{% endif %}>Submitted</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-2">Submit Grade and Status</button>
+                    </form>
+                {% else %}
+                    <!-- Display if already graded -->
+                    <p>Already Graded: {{ assignment.grade }}</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

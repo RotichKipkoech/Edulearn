@@ -1,0 +1,20 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    background-color: #fff;
+}
+
+.btn {
+    margin-left: 10px;
+}

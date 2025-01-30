@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - EduLearner{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Welcome to EduLearner!</h2>
+        <p>Your online learning platform.</p>
+
+        {% if session.get('user_id') %}
+            <h3>Dashboard</h3>
+            {% if user.role == 'ADMIN' %}
+                <p>You are logged in as an Admin.</p>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">Go to Admin Dashboard</a>
+            {% elif user.role == 'INSTRUCTOR' %}
+                <p>You are logged in as an Instructor.</p>
+                <a href="{{ url_for('instructor_dashboard') }}" class="btn btn-primary">Go to Instructor Dashboard</a>
+            {% elif user.role == 'STUDENT' %}
+                <p>You are logged in as a Student.</p>
+                <a href="{{ url_for('student_dashboard') }}" class="btn btn-primary">Go to Student Dashboard</a>
+            {% else %}
+                <p>Unknown role.</p>
+            {% endif %}
+        {% else %}
+            <p>You are not logged in. Please log in to access your dashboard.</p>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+{% endblock %}
