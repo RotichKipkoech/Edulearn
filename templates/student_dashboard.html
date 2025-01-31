@@ -11,10 +11,14 @@
         <ul class="list-group">
             {% for assignment in assignments %}
                 <li class="list-group-item">
-                    {{ assignment.title }} - Status: {{ assignment.status }}
+                    <strong>{{ assignment.title }}</strong><br>
+                    <p><strong>Description:</strong> {{ assignment.description }}</p> <!-- Display description -->
+                    <p><strong>Status:</strong> {{ assignment.status }}</p> <!-- Display status -->
+
                     {% if assignment.grade %}
-                        - Grade: {{ assignment.grade }}
+                        <p><strong>Grade:</strong> {{ assignment.grade }}</p> <!-- Display grade if available -->
                     {% endif %}
+
                     <a href="{{ url_for('submit_assignment', assignment_id=assignment.id) }}" class="btn btn-primary btn-sm float-end">Attempt Assignment</a>
                 </li>
             {% endfor %}
@@ -27,7 +31,7 @@
     <ul class="list-group">
         {% for lesson in lessons %}
             <li class="list-group-item">
-                {{ lesson.title }}
+                <strong>{{ lesson.title }}</strong>
                 <p>{{ lesson.content[:150] }}...</p>  <!-- Display first 150 characters of lesson content -->
             </li>
         {% endfor %}

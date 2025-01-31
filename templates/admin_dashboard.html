@@ -6,25 +6,6 @@
     <h2>Admin Dashboard</h2>
     <p>Welcome, Admin! Here you can manage users.</p>
 
-    <h4>Create a New User</h4>
-    <!-- Create User Form -->
-    <form method="POST" action="{{ url_for('admin_dashboard') }}">
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            <label for="username">Username</label>
-            {{ form.username(class="form-control") }}
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            {{ form.password(class="form-control") }}
-        </div>
-        <div class="form-group">
-            <label for="role">Role</label>
-            {{ form.role(class="form-control") }}
-        </div>
-        <button type="submit" class="btn btn-primary">Create User</button>
-    </form>
-
     <h4>All Users</h4>
     <ul class="list-group">
         {% for user in users %}
